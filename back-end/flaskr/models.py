@@ -52,7 +52,7 @@ class User(db.Model):
             db.session.commit()
         except:
             db.session.close()
-            return ValueError("Something went wrong with db") 
+            raise ValueError("Something went wrong with db") 
 
 # Class that represents the n to n relationship betwen sender, receipt and email.
 class UserEmail(db.Model):
@@ -119,8 +119,12 @@ class Email(db.Model):
         email = cls(subject=subject, body=body)
         email_users = UserEmail(recipentId=recipent, senderId=sender)
         email.email_users.append(email_users)
-        db.session.add(email)
-        db.session.commit()
+        try:
+            db.session.add(email)
+            db.session.commit()
+        except:
+            db.session.close()
+            raise SystemError('Something went wrong with db')
 
 
 """
