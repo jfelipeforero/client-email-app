@@ -42,11 +42,11 @@ def create_app(test_config=None):
     # testing the connection with database
     @app.route('/testDB')
     def testDB():
-        # for i in range(0, 4):
-        #     User.save_user(f'test{i}', 'test{i}', 'testing{i}', '{i}')
-        relationship_info = User.get_all_emails_and_ids()    
-        return jsonify(relationship_info)
+        for i in range(0, 4):
+            User.save_user(f'test{i}', f'test{i}', f'testing{i}', f'{i}')
 
+        relationship_info = User.get_all_users() 
+        return jsonify(relationship_info)
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(email.bp)
