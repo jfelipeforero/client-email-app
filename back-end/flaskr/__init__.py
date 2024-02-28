@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 
 from smtp.server import SMTPServer
 from flaskr.db import db
-from flaskr.models import User
+from flaskr.models import User, Email
 from flask_cors import CORS
 
 
@@ -16,9 +16,9 @@ def create_app(test_config=None):
     # CORS(app) 
     cors = CORS(app, origins="http://localhost:5173") 
     app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-        SQLALCHEMY_DATABASE_URI='postgresql://postgres:abc123@localhost/test'
+        SECRET_KEY="dev",
+        DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
+        SQLALCHEMY_DATABASE_URI="postgresql://postgres:abc123@localhost/test",
     )
 
     if test_config is None:
@@ -43,9 +43,9 @@ def create_app(test_config=None):
     @app.route('/testDB')
     def testDB():
         # for i in range(0, 4):
-        #     User.save_user(f'test{i}', f'test{i}', f'testing{i}', f'{i}')
-
-        relationship_info = User.get_all_users() 
+        #     User.save_user(f'test{i}', 'test{i}', 'testing{i}', '{i}')
+        
+        relationship_info = Email.get_user_sent_emails(2)
         return jsonify(relationship_info)
 
     app.register_blueprint(auth.bp)

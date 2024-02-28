@@ -52,7 +52,7 @@ class User(db.Model):
             db.session.commit()
         except:
             db.session.close()
-            raise ValueError("Something went wrong with db") 
+            raise ValueError("Something went wrong with db")
 
 # Class that represents the n to n relationship betwen sender, receipt and email.
 class UserEmail(db.Model):
