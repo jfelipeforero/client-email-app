@@ -98,3 +98,4 @@ password: password
 # Feedback (Home Group 1)
 
 1. When deploying a react application built with vitejs to production, it is advisable to use an optimized server such as express and not the vitejs previewer. You can read more details about the [issue](https://github.com/jfelipeforero/email-client-app/issues/14) and the [pull request](https://github.com/jfelipeforero/email-client-app/pull/16).
+2. a test for user registration was added and the second test was modified because the test had been performed with data from a different order than the first test. 
